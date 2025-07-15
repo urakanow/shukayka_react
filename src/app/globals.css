@@ -40,3 +40,9 @@ a {
     color-scheme: dark;
   }
 }
+
+
+header:has(input[type="search"]:focus) ~ main{
+  filter: blur(4px);
+  transition: filter 0.3s ease;
+}
