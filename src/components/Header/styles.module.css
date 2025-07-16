@@ -67,10 +67,6 @@
   overflow: hidden;
 }
 
-/* nav a img{
-  width: 28px;
-} */
-
 .nav_plus{
   font-family: IstokWebBold;
   font-weight: 700;
@@ -81,9 +77,3 @@
   text-decoration: none;
   color: white;
 }
-
-/* .nav_plus_img{
-  width: 20px;
-  height: 20px;
-} */
-
