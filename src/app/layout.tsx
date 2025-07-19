@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Inter, Istok_Web } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import AuthProvider from "@/components/AuthContext";
 
 const istokWeb = Istok_Web({
   weight: ['400', '700'],
@@ -12,7 +13,7 @@ const istokWeb = Istok_Web({
 });
 
 const inter = Inter({
-  weight: '400',
+  weight: ['400', '500'],
   style: 'normal',
   subsets: ['cyrillic', 'latin'],
   variable: '--font-inter'
@@ -41,11 +42,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} ${istokWeb.variable}`}>
-        <Header />
-        <main>
-          {children}
-        </main>
-        <Footer />
+        <AuthProvider>
+          <Header />
+          <main>
+            {children}
+          </main>
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );

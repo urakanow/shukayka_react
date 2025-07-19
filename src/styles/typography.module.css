@@ -1,0 +1,29 @@
+.heading {
+  font-family: var(--font-istok-web);
+  font-weight: 700;
+  line-height: 100%;
+  letter-spacing: 0%;
+  margin: 0;
+  color: black;
+}
+
+.large {
+  composes: heading;
+  font-size: 48px;
+}
+
+.semi_large {
+  composes: heading;
+  font-size: 40px;
+  color: #262928;
+}
+
+.medium {
+  composes: heading;
+  font-size: 32px;
+}
+
+.small {
+  composes: heading;
+  font-size: 20px;
+}
