@@ -1,6 +1,23 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Inter, Istok_Web } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import AuthProvider from "@/components/AuthContext";
+
+const istokWeb = Istok_Web({
+  weight: ['400', '700'],
+  style: ['normal', 'italic'],
+  subsets: ['cyrillic', 'latin'],
+  variable: '--font-istok-web',
+});
+
+const inter = Inter({
+  weight: ['400', '500'],
+  style: 'normal',
+  subsets: ['cyrillic', 'latin'],
+  variable: '--font-inter'
+})
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,8 +41,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+      <body className={`${geistSans.variable} ${geistMono.variable} ${istokWeb.variable}`}>
+        <AuthProvider>
+          <Header />
+          <main>
+            {children}
+          </main>
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );
