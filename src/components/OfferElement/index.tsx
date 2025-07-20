@@ -67,7 +67,7 @@ function OfferElement({ offerData, onFavoriteClick = null }: OfferElementProps) 
             if (typeof err === 'object' && err !== null && 'isAxiosError' in err) {
                 const axiosError = err as AxiosError;
                 if (axiosError.response?.status === 401) {
-                    router.push('/login')
+                    router.push('/auth/login')
                     return;
                 }
             }

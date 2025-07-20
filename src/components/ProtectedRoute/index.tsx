@@ -34,7 +34,7 @@ function ProtectedRoute({ children }: { children: ReactNode})  {
 
     useEffect(() => {
         if (accessState === AccessState.Denied) {
-        router.push(`/login?redirect=${encodeURIComponent(pathname || '/')}`);
+        router.push(`/auth/login?redirect=${encodeURIComponent(pathname || '/')}`);
         }
     }, [accessState, router, pathname]);
 

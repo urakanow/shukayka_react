@@ -4,6 +4,9 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AuthProvider from "@/components/AuthContext";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+
+const clientId = "131530890468-fh6f28mtkb04gs02hva387frkbvieqs1.apps.googleusercontent.com";
 
 const istokWeb = Istok_Web({
   weight: ['400', '700'],
@@ -42,13 +45,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} ${istokWeb.variable}`}>
-        <AuthProvider>
-          <Header />
-          <main>
-            {children}
-          </main>
-          <Footer />
-        </AuthProvider>
+        <GoogleOAuthProvider clientId={clientId}>
+          <AuthProvider>
+            <Header />
+            <main>
+              {children}
+            </main>
+            <Footer />
+          </AuthProvider>
+        </GoogleOAuthProvider>
       </body>
     </html>
   );
