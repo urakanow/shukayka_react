@@ -17,7 +17,7 @@ function Home() {
 
 export default Home;
 
-{/* <Route path='/offer/:id' element={<OfferPage />} /> 
+{/*
 <Route path='/create-offer' element={
   <ProtectedRoute>
     <CreateOfferPage />

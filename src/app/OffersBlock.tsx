@@ -40,7 +40,7 @@ function OffersBlock({ categoryIndex }: OffersBlockProps) {
 
             </Grid>
 
-            <button className={styles.see_more} onClick={() => router.push(`/category/${categoryIndex}`)}>Див. більше</button>
+            <button className={styles.see_more} onClick={() => router.push(`/categories/${categoryIndex}`)}>Див. більше</button>
         </div>
     );
 
