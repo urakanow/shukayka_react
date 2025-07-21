@@ -23,11 +23,6 @@ export default Home;
     <CreateOfferPage />
   </ProtectedRoute>
 } />
-<Route path='/favorites' element={
-  <ProtectedRoute>
-    <FavoritesPage />
-  </ProtectedRoute>
-} />
 <Route path='/my-offers' element={
   <ProtectedRoute>
     <MyOffersPage />
@@ -38,5 +33,4 @@ export default Home;
     <CreateOfferPage />
   </ProtectedRoute>
 } />
-<Route path='/category/:categoryIndex' element={<CategoryPage />} />
 <Route path='/search' element={<SearchPage />} />  */}
