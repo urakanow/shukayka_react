@@ -16,3 +16,27 @@ function Home() {
 }
 
 export default Home;
+
+{/* <Route path='/offer/:id' element={<OfferPage />} /> 
+<Route path='/create-offer' element={
+  <ProtectedRoute>
+    <CreateOfferPage />
+  </ProtectedRoute>
+} />
+<Route path='/favorites' element={
+  <ProtectedRoute>
+    <FavoritesPage />
+  </ProtectedRoute>
+} />
+<Route path='/my-offers' element={
+  <ProtectedRoute>
+    <MyOffersPage />
+  </ProtectedRoute>
+} />
+<Route path='/my-offer/:id' element={
+  <ProtectedRoute>
+    <CreateOfferPage />
+  </ProtectedRoute>
+} />
+<Route path='/category/:categoryIndex' element={<CategoryPage />} />
+<Route path='/search' element={<SearchPage />} />  */}

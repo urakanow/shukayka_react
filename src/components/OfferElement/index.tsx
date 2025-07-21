@@ -45,7 +45,7 @@ function OfferElement({ offerData, onFavoriteClick = null }: OfferElementProps) 
     };
 
     return (
-        <IOfferElement offerData={offerData} linkUrl={"/offer"}>
+        <IOfferElement offerData={offerData} linkUrl={"/offers"}>
             <CldImage className={styles.favorite_button} src={favorite ? favorite_selected_image : favorite_unselected_image}
             alt="" width={30} height={26}
             onClick={handleFavoriteClick} />
