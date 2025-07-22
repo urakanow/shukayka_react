@@ -1,6 +1,11 @@
+import OffersDisplayPage from "@/components/OffersDisplayPage";
+import MyOffersBlock from "./MyOffersBlock";
+
 function MyOffersPage() {
     return (
-        <>my ofs page</>
+        <OffersDisplayPage title="Мої оголошення">
+            <MyOffersBlock />
+        </OffersDisplayPage>
     );
 }
 
