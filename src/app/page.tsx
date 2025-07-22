@@ -16,6 +16,3 @@ function Home() {
 }
 
 export default Home;
-
-{/*
-<Route path='/search' element={<SearchPage />} />  */}
