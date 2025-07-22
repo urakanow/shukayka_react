@@ -5,6 +5,7 @@ import { useAuth } from "@/components/AuthContext";
 import { Grid } from "@mui/material";
 import FavoriteOfferElement from "./FavoriteOfferElement";
 import OffersDisplayPage from "@/components/OffersDisplayPage";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 interface OfferPreview{
     id: number,
@@ -27,28 +28,30 @@ function FavoritesPage() {
     }, [favorites])
 
     return (
-        <OffersDisplayPage title="Вибрані">
-            {favorites ? (
-                <>
-                    {favorites.length == 0 && <span className="small_text">Вибрані оголошення з'являтимуться тут</span>}
-                    <div className="offers_block">
-                        <Grid container spacing={2} className="offers_grid">
-                            {favorites.map((offer, index) =>
-                                <FavoriteOfferElement key={index} offerData={offer} onFavoriteClick={(id) => {
-                                    console.log("favorite clicked", id)
-                                    setFavorites(prev => prev.filter(offer => offer.id !== id))
-                                }} />
-                            )}
-                        </Grid>
-                        
-                    </div>
-                </>
-            ) : (
-                <>
-                    loading...
-                </>
-            )}
-        </OffersDisplayPage>
+        <ProtectedRoute>
+            <OffersDisplayPage title="Вибрані">
+                {favorites ? (
+                    <>
+                        {favorites.length == 0 && <span className="small_text">Вибрані оголошення з'являтимуться тут</span>}
+                        <div className="offers_block">
+                            <Grid container spacing={2} className="offers_grid">
+                                {favorites.map((offer, index) =>
+                                    <FavoriteOfferElement key={index} offerData={offer} onFavoriteClick={(id) => {
+                                        console.log("favorite clicked", id)
+                                        setFavorites(prev => prev.filter(offer => offer.id !== id))
+                                    }} />
+                                )}
+                            </Grid>
+                            
+                        </div>
+                    </>
+                ) : (
+                    <>
+                        loading...
+                    </>
+                )}
+            </OffersDisplayPage>
+        </ProtectedRoute>
      );
 
      async function fetchFavorites() {
