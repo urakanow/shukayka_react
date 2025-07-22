@@ -18,19 +18,4 @@ function Home() {
 export default Home;
 
 {/*
-<Route path='/create-offer' element={
-  <ProtectedRoute>
-    <CreateOfferPage />
-  </ProtectedRoute>
-} />
-<Route path='/my-offers' element={
-  <ProtectedRoute>
-    <MyOffersPage />
-  </ProtectedRoute>
-} />
-<Route path='/my-offer/:id' element={
-  <ProtectedRoute>
-    <CreateOfferPage />
-  </ProtectedRoute>
-} />
 <Route path='/search' element={<SearchPage />} />  */}

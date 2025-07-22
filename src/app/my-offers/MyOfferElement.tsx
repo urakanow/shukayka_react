@@ -19,13 +19,12 @@ function MyOfferElement({ id, offerData, onDelete }: MyOfferElementProps) {
     
     const delete_image = "delete_icon_om93sn";
 
-    // const navigate = useNavigate();
     const router = useRouter();
     
     return (
-        <IOfferElement offerData={offerData} linkUrl="/my-offer">
+        <IOfferElement offerData={offerData} linkUrl="/edit-offer">
             <div id='my_offer_element_button_section' className="horizontal_container">
-                <RegularButton onClick={() => router.push(`/my-offer/${offerData.id}`)} text='Редагувати' />
+                <RegularButton onClick={() => router.push(`/edit-offer/${offerData.id}`)} text='Редагувати' />
                 <button id="delete_button" onClick={deleteOffer}>
                     <CldImage src={delete_image} alt='' width={34} height={34} />
                 </button>
