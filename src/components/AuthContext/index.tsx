@@ -26,21 +26,27 @@ export function useAuth() {
 function AuthProvider({ children } : {children: ReactNode}) {
     const categories = ["Меблі", "Електроніка", "Мода", "Робота", "Іграшки", "Авто", "Тварини", "Нерухомість"];
     const baseUrl:string = process.env.NEXT_PUBLIC_BASE_URL ? process.env.NEXT_PUBLIC_BASE_URL : "";
-    const [accessToken, setAccessToken] = useState<string | null>(null)
+    const [accessToken, setAccessToken] = useState<string | null>(
+        typeof window !== 'undefined' ? sessionStorage.getItem('accessToken') : null
+    );
     
     useEffect(() => {
         console.log("authcontext baseUrl: ", process.env.NEXT_PUBLIC_BASE_URL)
         setAccessToken(sessionStorage.getItem('accessToken'))
         sessionStorage.setItem('baseUrl', baseUrl);
+        console.log("access token authcontext: ", accessToken)
     }, [])
     
     const [authErrorMessage, setAuthErrorMessage] = useState("");
 
     useEffect(() => {
-        if (accessToken) {
-            sessionStorage.setItem('accessToken', accessToken);
-        } else {
-            sessionStorage.removeItem('accessToken');
+        if (typeof window !== 'undefined') {
+            if (accessToken) {
+                sessionStorage.setItem('accessToken', accessToken);
+                console.log("access token changed to ", accessToken)
+            } else {
+                sessionStorage.removeItem('accessToken');
+            }
         }
     }, [accessToken]);
 

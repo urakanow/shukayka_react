@@ -27,3 +27,11 @@
   composes: heading;
   font-size: 20px;
 }
+
+.small_text {
+  font-family: var(--font-istok-web);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 150%;
+  letter-spacing: 0%;
+}

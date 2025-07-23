@@ -1,12 +1,8 @@
-// import { CldImage } from '@cloudinary/react';
 import { CldImage } from 'next-cloudinary';
 import Link from 'next/link';
-import { useContext } from 'react';
-// import { useAuth } from '../../Shared/AuthContext/AuthContext';
 import styles from './styles.module.css';
 
 function Navigation() {
-    // const { cld } = useAuth();
     const favorite_image = "favorite_icon_lys5aq";
     const plus_icon_image = "plus_icon_ghmei2";
     const me_image = "me_icon_por333";
