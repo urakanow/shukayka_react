@@ -37,6 +37,7 @@ function OfferPage() {
                     }}/>
     
                     <BuySection data={{
+                        offerId: parseInt(offerId),
                         creationDate: offerData.creationDate,
                         title: offerData.title,
                         price: offerData.price,
