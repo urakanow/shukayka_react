@@ -6,21 +6,10 @@ import RegularButton from "@/components/RegularButton";
 import TextInputField from "@/components/TextInputField";
 import page from './page.module.css';
 import typography from '@/styles/typography.module.css';
-
-interface Data {
-    username: string,
-    email: string,
-    phoneNumber: string
-    firstName?: string,
-    lastName?: string,
-    city?: string,
-    postCode?: string,
-    address?: string,
-    apartmentNumber?: string,
-}
+import { PersonalData } from "@/models/PersonalData";
 
 interface PersonalDataBlockProps {
-    data: Data
+    data: PersonalData
 }
 
 function PersonalDataBlock({ data }: PersonalDataBlockProps) {

@@ -5,6 +5,7 @@ import useApi from '@/hooks/UseApi';
 import { DateUtil } from '@/utils/DateFormatter';
 import { CldImage } from 'next-cloudinary';
 import { useRouter } from 'next/navigation';
+import DeliveryOptionsBlock from './DeliveryOptionsBlock';
 
 interface Data {
     offerId: number,
@@ -26,8 +27,6 @@ function BuySection({ data }: BuySectionProps) {
 
     const profile_picture = "profile_picture_default_icon_t9kx9b";
     const green_arrow_image = "green_arrow_icon_rmvcna";
-    const ukrpost_image = "ukrpost_icon_rxne6a";
-    const novapost_image = "nova_post_icon_coq0n8";
 
     return (
         <div className='green_rectangle vertical_container ' id='offer_page_buy_section'>
@@ -55,56 +54,12 @@ function BuySection({ data }: BuySectionProps) {
                 <RegularButton className='buy_now_button' text='Купити зараз' onClick={buyNow} />
             </ProtectedRoute>
 
-            <h3 className='small_heading'>Спосіб доставки</h3>
-            
-            <div className='delivery horizontal_container'>
-                <div className='vertical_container'>
-                    <h3 className='small_heading'>Укрпошта</h3>
-                    <span className='small_text'>
-                        безкоштовно, доставка<br />
-                        протягом 2-5 днів
-                    </span>
-                </div>
-                <CldImage src={ukrpost_image} alt='' width={58} height={58} />
-            </div>
-
-            <div className='delivery horizontal_container'>
-                <div className='vertical_container'>
-                    <h3 className='small_heading'>У відділення Нова пошта</h3>
-                    <span className='small_text'>
-                        від 60 грн, доставка<br />
-                        протягом 1-3 днів
-                    </span>
-                </div>
-                <CldImage src={novapost_image} alt='' width={58} height={58} />
-            </div>
-
-            <div className='delivery horizontal_container'>
-                <div className='vertical_container'>
-                    <h3 className='small_heading'>Кур'єром Нова пошта</h3>
-                    <span className='small_text'>
-                        від 95 грн, доставка<br />
-                        протягом 1-3 днів
-                    </span>
-                </div>
-                <CldImage src={novapost_image} alt='' width={58} height={58} />
-            </div>
-
-            <div className='delivery horizontal_container'>
-                <div className='vertical_container'>
-                    <h3 className='small_heading'>Нова Пошта у Польщу</h3>
-                    <span className='small_text'>
-                        від 350 грн, доставка<br />
-                        протягом 2-5 д alt='' width={58} height={58}нів
-                    </span>
-                </div>
-                <CldImage src={novapost_image} alt='' width={58} height={58} />
-            </div>
-
+            <DeliveryOptionsBlock />
         </div>
      );
     function buyNow(){
         console.log("buy now clicked")
+        router.push(`/buy/${data.offerId}`)
     }
     
     async function contactSeller(){
