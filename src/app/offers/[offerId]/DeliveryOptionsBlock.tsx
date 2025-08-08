@@ -8,13 +8,13 @@ function DeliveryOptionsBlock() {
         <>
             <h3 className='small_heading'>Спосіб доставки</h3>
             
-            <DeliveryOption title='Укрпошта' price='безкоштовно' deliveryTime='2-5 днів' image={ukrpost_image} />
+            {/* <DeliveryOption title='Укрпошта' price='безкоштовно' deliveryTime='2-5 днів' image={ukrpost_image} /> */}
 
             <DeliveryOption title='У відділення Нова пошта' price='від 60 грн' deliveryTime='1-3 днів' image={novapost_image} />
 
-            <DeliveryOption title="Кур'єром Нова пошта" price='від 95 грн' deliveryTime='1-3 днів' image={novapost_image} />
+            {/* <DeliveryOption title="Кур'єром Нова пошта" price='від 95 грн' deliveryTime='1-3 днів' image={novapost_image} /> */}
             
-            <DeliveryOption title="Нова Пошта у Польщу" price='від 350 грн' deliveryTime='2-5 днів' image={novapost_image} />
+            <DeliveryOption title="Нова Пошта міжнародно" price='від 350 грн' deliveryTime='2-5 днів' image={novapost_image} />
         </>
     );
 }

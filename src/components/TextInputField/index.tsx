@@ -1,28 +1,49 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, forwardRef, Ref } from "react";
 import InputLabel from "../InputLabel";
 
-interface TextInputFieldProps {
+interface TextInputFieldProps extends React.InputHTMLAttributes<HTMLInputElement>{
     value?: string,
     onChange: (e: ChangeEvent<HTMLInputElement>) => void,
     id: string,
     label: string,
-    defaultValue?: string
+    defaultValue?: string,
 }
 
-function TextInputField({ value, onChange, id, label, defaultValue }: TextInputFieldProps) {
-    return (
-        <>
-            <InputLabel htmlFor={id} text={label} />
+// function TextInputField({ value, onChange, id, label, defaultValue, ...inputProps }: TextInputFieldProps) {
+//     return (
+//         <>
+//             <InputLabel htmlFor={id} text={label} />
             
-            <input required type="text"
-            className="text_input"
-            id={id}
-            defaultValue={defaultValue}
-            value={value}
-            onChange={onChange}
-            />
-        </>
+//             <input required type="text"
+//             className="text_input"
+//             id={id}
+//             defaultValue={defaultValue}
+//             value={value}
+//             onChange={onChange}
+//             {...inputProps}
+//             />
+//         </>
+//     );
+// }
+const TextInputField = forwardRef<HTMLInputElement, TextInputFieldProps>(
+  ({ value, onChange, id, label, defaultValue, ...inputProps }, ref) => {
+    return (
+      <>
+        <InputLabel htmlFor={id} text={label} />
+        <input
+          required
+          type="text"
+          className="text_input"
+          id={id}
+          defaultValue={defaultValue}
+          value={value}
+          onChange={onChange}
+          ref={ref}
+          {...inputProps}
+        />
+      </>
     );
-}
+  }
+);
 
 export default TextInputField;

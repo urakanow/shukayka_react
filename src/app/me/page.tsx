@@ -5,23 +5,11 @@ import MessagesBlock from './MessagesBlock';
 import { useEffect, useState } from 'react';
 import useApi from '@/hooks/UseApi';
 import { useAuth } from '@/components/AuthContext';
-// import './style.css';
 import RegularButton from '@/components/RegularButton';
 import { OfferPreview } from '@/models/OfferPreview';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import styles from './page.module.css'
-
-interface PersonalData{
-    username: string,
-    email: string,
-    phoneNumber: string,
-    firstName?: string,
-    lastName?: string,
-    city?: string,
-    postCode?: string,
-    address?: string,
-    apartmentNumber?: string,
-}
+import { PersonalData } from '@/models/PersonalData';
 
 interface UserData {
     address?: string,

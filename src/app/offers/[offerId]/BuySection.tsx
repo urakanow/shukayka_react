@@ -59,6 +59,7 @@ function BuySection({ data }: BuySectionProps) {
      );
     function buyNow(){
         console.log("buy now clicked")
+        router.push(`/buy/${data.offerId}`)
     }
     
     async function contactSeller(){
