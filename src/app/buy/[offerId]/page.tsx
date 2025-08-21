@@ -1,12 +1,12 @@
 "use client"
 import { useAuth } from "@/components/AuthContext";
-import RegularButton from "@/components/RegularButton";
+// import RegularButton from "@/components/RegularButton";
 import RegularSubmit from "@/components/RegularSubmit";
 import TextInputField from "@/components/TextInputField";
 import useApi from "@/hooks/UseApi";
 import { DeliveryData } from "@/models/DeliveryData";
 import { Offer } from "@/models/Offer";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import DepartmentDropdown from "./DepartmentDropdown";
 import styles from './styles.module.css';
@@ -25,32 +25,34 @@ function BuyPage() {
         department: ''
     });
 
-    const [departmentNumber, setDepartmentNumber] = useState('');
+    // const [departmentNumber, setDepartmentNumber] = useState('');
     const debounceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
     const [isDepartment, setIsDepartment] = useState<boolean>(true);//false is postomat
 
-    const handleDepartmentNumberChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const { value } = e.target;
-        setDepartmentNumber(value);
+    const router = useRouter();
+
+    // const handleDepartmentNumberChange = (e: ChangeEvent<HTMLInputElement>) => {
+    //     const { value } = e.target;
+    //     setDepartmentNumber(value);
         
-        // Clear any existing timeout
-        if (debounceTimeoutRef.current) {
-            clearTimeout(debounceTimeoutRef.current);
-        }
+    //     // Clear any existing timeout
+    //     if (debounceTimeoutRef.current) {
+    //         clearTimeout(debounceTimeoutRef.current);
+    //     }
         
-        // Only set new timeout if field isn't empty
-        if (value.trim() !== '') {
-            debounceTimeoutRef.current = setTimeout(() => {
-                console.log('User finished typing department number:', value);
-                if(!userData.city){
-                    console.log("city is required for the department search")
-                    return
-                }
-                fetchNovaPostDepartments(value);
-                // Here you would call your actual action (e.g., fetchNovaPostDepartments)
-            }, 2000); // 2 second delay
-        }
-    };
+    //     // Only set new timeout if field isn't empty
+    //     if (value.trim() !== '') {
+    //         debounceTimeoutRef.current = setTimeout(() => {
+    //             console.log('User finished typing department number:', value);
+    //             if(!userData.city){
+    //                 console.log("city is required for the department search")
+    //                 return
+    //             }
+    //             fetchNovaPostDepartments(value);
+    //             // Here you would call your actual action (e.g., fetchNovaPostDepartments)
+    //         }, 2000); // 2 second delay
+    //     }
+    // };
 
     // Clean up timeout on unmount
     useEffect(() => {
@@ -98,7 +100,7 @@ function BuyPage() {
                 <TextInputField label="City" id="city" value={userData.city} onChange={handleChange} />
                 
                 <div className="horizontal_container">
-                    <input type="radio" name="bebra" className={styles.radio}
+                    <input type="radio" name="deliveryType" className={styles.radio}
                     // checked={isDepartment ? true : false }
                     checked={isDepartment}
                     onChange={() => setIsDepartment(!isDepartment)}
@@ -106,7 +108,7 @@ function BuyPage() {
                 </div>
                 
                 <div className="horizontal_container">
-                    <input type="radio" name="bebra" className={styles.radio}
+                    <input type="radio" name="deliveryType" className={styles.radio}
                     // checked={!isDepartment ? true : false } 
                     checked={!isDepartment}
                     onChange={() => setIsDepartment(!isDepartment)}
@@ -128,6 +130,28 @@ function BuyPage() {
     
     async function proceedToCheckout(){
         console.log("proceed to checkout: ", userData)
+        createOrder();
+    }
+
+    async function createOrder(){
+        try{
+            const response = await authorizedRequest({
+                url: `${baseUrl}/order/create`,
+                method: 'post',
+                data: JSON.stringify({
+                    offerId: offerId
+                })
+            })
+
+            if(response.status === 200){
+                // const data = await response.json();
+
+                console.log("new order: ", response)
+                router.push(`/checkout/${response.data.id}`)
+            }
+        } catch(err){
+            console.error("failed to create order: ", err)
+        }
     }
     
     async function fetchOfferData() {
@@ -146,37 +170,38 @@ function BuyPage() {
         }
     }
 
-    async function fetchNovaPostDepartments(query: string) {
-        try{
-            const response = await fetch("https://api.novaposhta.ua/v2.0/json/", {
-                method: 'post',
-                body: JSON.stringify({
-                    "apiKey": "374d971fa3b5e69039dd30184a3b5c6e",
-                    "modelName": "AddressGeneral",
-                    "calledMethod": "getWarehouses",
-                    "methodProperties": {
-                        "FindByString" : `${query}`,
-                        "CityName" : `${userData.city}`,
-                        "Language" : "UA",
-                        "TypeOfWarehouseRef" : "841339c7-591a-42e2-8233-7a0a00f0ed6f"
-                    },
-                })
-            })
+    // async function fetchNovaPostDepartments(query: string) {
+    //     try{
+    //         const response = await fetch("https://api.novaposhta.ua/v2.0/json/", {
+    //             method: 'post',
+    //             body: JSON.stringify({
+    //                 "apiKey": "374d971fa3b5e69039dd30184a3b5c6e",
+    //                 "modelName": "AddressGeneral",
+    
+    //                 "calledMethod": "getWarehouses",
+    //                 "methodProperties": {
+    //                     "FindByString" : `${query}`,
+    //                     "CityName" : `${userData.city}`,
+    //                     "Language" : "UA",
+    //                     "TypeOfWarehouseRef" : "841339c7-591a-42e2-8233-7a0a00f0ed6f"
+    //                 },
+    //             })
+    //         })
 
-            if(response.status === 200){
-                const data = await response.json();
+    //         if(response.status === 200){
+    //             const data = await response.json();
 
-                var length = data.data.length
-                if(length > 20){
-                    console.log("more specific request required")
-                    return
-                }
-                console.log("nova post departments: ", data)
-            }
-        } catch(err){
-            console.error("failed to fetch offer data: ", err)
-        }
-    }
+    //             var length = data.data.length
+    //             if(length > 20){
+    //                 console.log("more specific request required")
+    //                 return
+    //             }
+    //             console.log("nova post departments: ", data)
+    //         }
+    //     } catch(err){
+    //         console.error("failed to fetch offer data: ", err)
+    //     }
+    // }
 
     async function fetchUserData(){
         try{
@@ -205,40 +230,3 @@ function BuyPage() {
 }
 
 export default BuyPage;
-// {
-// 	"success": true,
-// 	"data": [
-// 		{
-// 			"Ref": "6f8c7162-4b72-4b0a-88e5-906948c6a92f",
-// 			"Description": "Поштове відділення з обмеження",
-// 			"DescriptionRu": "Parcel Shop"
-// 		},
-// 		{
-// 			"Ref": "841339c7-591a-42e2-8233-7a0a00f0ed6f",
-// 			"Description": "Поштове(ий)",
-// 			"DescriptionRu": "Почтовое отделение"
-// 		},
-// 		{
-// 			"Ref": "95dc212d-479c-4ffb-a8ab-8c1b9073d0bc",
-// 			"Description": "Поштомат ПриватБанку",
-// 			"DescriptionRu": "Почтомат приват банка"
-// 		},
-// 		{
-// 			"Ref": "9a68df70-0267-42a8-bb5c-37f427e36ee4",
-// 			"Description": "Вантажне(ий)",
-// 			"DescriptionRu": "Грузовое отделение"
-// 		},
-// 		{
-// 			"Ref": "f9316480-5f2d-425d-bc2c-ac7cd29decf0",
-// 			"Description": "Поштомат",
-// 			"DescriptionRu": "Почтомат"
-// 		}
-// 	],
-// 	"errors": [],
-// 	"warnings": [],
-// 	"info": [],
-// 	"messageCodes": [],
-// 	"errorCodes": [],
-// 	"warningCodes": [],
-// 	"infoCodes": []
-// }
