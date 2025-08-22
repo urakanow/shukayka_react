@@ -1,13 +1,18 @@
 import { UserPreview } from "@/models/UserPreview";
 import User from "./User";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useAuth } from "@/components/AuthContext";
+import useApi from "@/hooks/UseApi";
 
-interface UsersTabProps {
-    users: UserPreview[],
-    setUsers: Dispatch<SetStateAction<UserPreview[]>>
-}
+function UsersTab(){
+    const { baseUrl } = useAuth();
+    const { authorizedRequest } = useApi();
+    const [users, setUsers] = useState<UserPreview[]>([]);
 
-function UsersTab({ users, setUsers }: UsersTabProps) {
+    useEffect(() => {
+        fetchUsers();
+    }, [])
+
     return (
         <div className="vertical_container">
             {users.map((user, index) => (
@@ -17,6 +22,22 @@ function UsersTab({ users, setUsers }: UsersTabProps) {
             ))}
         </div>
     );
+    
+    async function fetchUsers(){
+        try{
+            const response = await authorizedRequest({
+                method: 'get',
+                url: `${baseUrl}/admin/users`
+            })
+            
+            if(response.status === 200){
+                console.log(response.data)
+                setUsers(response.data)
+            }
+        } catch(err: unknown) {
+            console.error("Failed to fetch users:", err);
+        }
+    }
 }
 
 export default UsersTab;

@@ -1,27 +1,44 @@
 "use client"
 import { OfferPreview } from "@/models/OfferPreview";
 import Offer from "./Offer";
-import { Dispatch, SetStateAction, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useAuth } from "@/components/AuthContext";
+import useApi from "@/hooks/UseApi";
 
-interface OffersTabProps {
-    offers: OfferPreview[],
-    setOffers: Dispatch<SetStateAction<OfferPreview[]>>
-}
-
-function OffersTab({ offers, setOffers }: OffersTabProps) {
+function OffersTab() {
+    const { baseUrl } = useAuth();
+    const { authorizedRequest } = useApi();
+    const [offers, setOffers] = useState<OfferPreview[]>([]);
+    
     useEffect(() => {
-        console.log("offers changed offerstab: ", offers)
-    }, [offers])
+        fetchOffers();
+    }, [])
+    
     return (
         <div className="vertical_container">
             {offers.map((offer, index) => (
                 <Offer data={offer} key={index} onDelete={(id) => {
-                    // console.log("new offers list", offers.filter(offer => offer.id !== id))
                     setOffers(prev => prev.filter(offer => offer.id !== id));
                 }} />
             ))}
         </div>
     );
+    
+    async function fetchOffers(){
+        try{
+            const response = await authorizedRequest({
+                method: 'get',
+                url: `${baseUrl}/admin/offers`
+            })
+            
+            if(response.status === 200){
+                console.log(response.data)
+                setOffers(response.data)
+            }
+        } catch(err: unknown) {
+            console.error("Failed to fetch offers:", err);
+        }
+    }
 }
 
 export default OffersTab;
