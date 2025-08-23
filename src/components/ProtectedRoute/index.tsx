@@ -3,13 +3,7 @@ import { ReactNode, useEffect, useState } from 'react';
 import { useAuth } from '../AuthContext';
 import { useTokenRefresh } from '@/hooks/UseTokenRefresh';
 import { usePathname, useRouter } from 'next/navigation';
-// import { register } from 'module';
-
-enum AccessState{
-  Checking = "checking",
-  Denied = "denied",
-  Enabled = "enabled"
-}
+import { AccessState } from '@/enums/AccessState';
 
 function ProtectedRoute({ children }: { children: ReactNode})  {
     const { accessToken } = useAuth();
