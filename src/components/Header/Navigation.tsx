@@ -13,6 +13,8 @@ function Navigation() {
     const plus_icon_image = "plus_icon_ghmei2";
     const me_image = "me_icon_por333";
     const admin_image = "administrator_1_1_ybwnja";
+    const my_orders_image = "delivery_1_p7kwam";
+    
     const [isAdmin, setIsAdmin] = useState<boolean>(false);
 
     useEffect(() => {
@@ -23,6 +25,7 @@ function Navigation() {
     return (
         <nav className={styles.nav}>
             <Link href="/favorites" className={styles.nav_link}><CldImage src={favorite_image} alt='favorite image' width={28} height={24}/></Link>
+            <Link href="/my-orders" className={styles.nav_link}><CldImage src={my_orders_image} alt='my orders image' width={28} height={24}/></Link>
             <Link href="/create-offer" className={`${styles.nav_link} ${styles.nav_plus}`}><CldImage src={plus_icon_image} alt='plus icon' width={20} height={20}/></Link>
             <Link href="/me" className={styles.nav_link}><CldImage src={me_image} alt='me image' width={28} height={28}/></Link>
             
