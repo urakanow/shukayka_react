@@ -139,7 +139,8 @@ function BuyPage() {
                 url: `${baseUrl}/order/create`,
                 method: 'post',
                 data: JSON.stringify({
-                    offerId: offerId
+                    offerId: offerId,
+                    deliveryAddress: userData.department
                 })
             })
 
