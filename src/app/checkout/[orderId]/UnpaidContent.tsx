@@ -1,6 +1,7 @@
 import RegularSubmit from "@/components/RegularSubmit";
 import TextInputField from "@/components/TextInputField";
 import { useState, ChangeEvent } from "react";
+import styles from "./page.module.css";
 
 interface PaymentData {
     cardNumber: string,
@@ -26,7 +27,7 @@ function UnpaidContent() {
     };
 
     return (
-        <form className="green_rectangle" onSubmit={(e) => {
+        <form className={`${styles.checkout_form} card`} onSubmit={(e) => {
             e.preventDefault();
             console.log("payment data: ", paymentData)
         }}>

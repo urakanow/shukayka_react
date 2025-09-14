@@ -3,6 +3,7 @@ import DescriptionBlock from "./DescriptionBlock";
 import PhotoBlock from "./PhotoBlock";
 import { Photo } from '@/models/Photo';
 import { CldImage } from 'next-cloudinary';
+import styles from "./page.module.css";
 
 interface Data{
     photos: Photo[],
@@ -21,24 +22,28 @@ function InfoSection({ data }: InfoSectionProps) {
     const location_image = "location_icon_szvvv8";
 
     return (
-        <div className='vertical_container' id='info_section'>
+        <div className={`${styles.column}`} id='info_section'>
             <PhotoBlock photos={data.photos} />
 
-            <div className='green_rectangle horizontal_container' id='info_bar'>
-                <div>Приватна особа</div>
-                <div>Стан: Вживане</div>
-                <div>{categories[data.category]}</div>
+            <div className={`${styles.block} ${styles.info_block} card`}>
+                <div className={`${styles.info} `} id='info_bar'>
+                    <div className="small-card">Приватна особа</div>
+                    <div className="small-card">Стан: Вживане</div>
+                    <div className="small-card">{categories[data.category]}</div>
+                </div>
+
+                <DescriptionBlock data={{
+                    description: data.description,
+                    id: data.id
+                }}/>
+
+                <div className={`${styles.location_container}`} id='location_container'>
+                    <CldImage src={location_image} alt='' width={40} height={40} id="location_image" />
+                    <small className='small_text'>{data.address}</small>
+                </div>
             </div>
 
-            <DescriptionBlock data={{
-                description: data.description,
-                id: data.id
-            }}/>
 
-            <div className='green_rectangle horizontal_container' id='location_container'>
-                <CldImage src={location_image} alt='' width={40} height={40} id="location_image" />
-                <span className='small_text'>Місцезнаходження: {data.address}</span>
-            </div>
         </div>
      );
 }

@@ -23,7 +23,7 @@ function GoogleLoginComponent() {
     }
 
     return (
-        <div className={styles.google_button}>
+        <div className={`${styles.google_button} small-card`}>
             <GoogleLogin
             onSuccess={onSuccess}
             onError={onError}

@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-
+import styles from "./page.module.css";
 interface AuthPageProps {
     children: ReactNode,
     title: string
@@ -7,15 +7,10 @@ interface AuthPageProps {
 
 function AuthPage({ children, title }: AuthPageProps) {
     return (
-        <div id="authorize_page_container">
-            <div className="auth_form vertical_container">
-                <h1 className="large_heading auth_page_heading">{title}</h1>
-                {/* <span className='auth_medium_text'>
-                    Вам на пошту буде надіслано інструкцію<br/>
-                    з відновлення пароля
-                </span> */}
-                {children}
-            </div>
+        <div className={`${styles.auth_form} card`}>
+            <h1 className="large_heading auth_page_heading">{title}</h1>
+            
+            {children}
         </div>
     );
 }

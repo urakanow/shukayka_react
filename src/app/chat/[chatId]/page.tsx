@@ -20,6 +20,7 @@ function ChatPage() {
     const [messages, setMessages] = useState<Message[]>([]);
     const [chat, setChat] = useState<Chat | null>(null);
     const [newMessage, setNewMessage] = useState<string>("");
+    const [offerTitle, setOfferTitle] = useState<string>("");
 
     useEffect(() => {
         // // Initialize connection
@@ -67,20 +68,24 @@ function ChatPage() {
     return (
         <ProtectedRoute>
             {response ? (
-                <div className={`${styles.chat_page} vertical_container`}>
-                    <h1>{response}</h1>
+                <div className={`${styles.chat_page} card`}>
+                    <h1>{offerTitle}</h1>
                     <div className={`${styles.chat} vertical_container`}>
                         {messages && messages.map((message, index) => (
-                            <span key={index} className={isMyMessage(message) ? styles.my_message : styles.not_my_message}>{message.text}</span>
+                            <span key={index} className={`
+                                small-card
+                                ${styles.message}
+                                ${isMyMessage(message) ? styles.my_message : styles.not_my_message}
+                            `}>{message.text}</span>
                         ))}
                     </div>
 
                     <form onSubmit={(e) => {
                         e.preventDefault();
                         sendMessage();
-                    }} className={`${styles.send_message_container} horizontal_container`}>
-                        <input type="text" className={styles.message_input} value={newMessage} onChange={(e) => setNewMessage(e.target.value)}></input>
-                        <input type="submit" value={"send"} />
+                    }} className={`${styles.send_message_container}`}>
+                        <input type="text" className={`${styles.message_input} input small-card`} value={newMessage} onChange={(e) => setNewMessage(e.target.value)}></input>
+                        <input className="primary-button" type="submit" value={"send"} />
                     </form>
                 </div>
             ) : (
@@ -170,6 +175,7 @@ function ChatPage() {
                 setResponse(response.data.message);
                 setChat(response.data.chat);
                 setMessages(response.data.chat.messages);
+                setOfferTitle(response.data.chat.offer.title);
             }
         } catch(err: unknown) {
             if (axios.isAxiosError(err)) {

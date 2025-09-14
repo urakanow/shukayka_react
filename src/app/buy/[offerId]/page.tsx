@@ -87,9 +87,9 @@ function BuyPage() {
     }, [isDepartment])
     
     return (
-        <div className="green_rectangle vertical_container">
+        <div className={`${styles.container} card`}>
             {offerData?.title}
-            <form onSubmit={(e) => {
+            <form className="form" onSubmit={(e) => {
                 e.preventDefault();
                 proceedToCheckout();
             }}>
@@ -140,7 +140,7 @@ function BuyPage() {
                 method: 'post',
                 data: JSON.stringify({
                     offerId: offerId,
-                    deliveryAddress: userData.department
+                    deliveryAddress: userData.city + ", " + userData.department
                 })
             })
 

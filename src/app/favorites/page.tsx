@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 import useApi from "@/hooks/UseApi";
 import { useAuth } from "@/components/AuthContext";
 import { Grid } from "@mui/material";
-import FavoriteOfferElement from "./FavoriteOfferElement";
-import OffersDisplayPage from "@/components/OffersDisplayPage";
 import ProtectedRoute from "@/components/ProtectedRoute";
+import styles from "./styles.module.css";
+import OfferElement from "@/components/OfferElement";
+import router from "next/router";
 
 interface OfferPreview{
     id: number,
@@ -29,7 +30,7 @@ function FavoritesPage() {
 
     return (
         <ProtectedRoute>
-            <OffersDisplayPage title="Вибрані">
+            {/* <OffersDisplayPage title="Вибрані">
                 {favorites ? (
                     <>
                         {favorites.length == 0 && <span className="small_text">Вибрані оголошення з'являтимуться тут</span>}
@@ -50,7 +51,17 @@ function FavoritesPage() {
                         loading...
                     </>
                 )}
-            </OffersDisplayPage>
+            </OffersDisplayPage> */}
+        
+            <div className={styles.offers_block}>
+                <h1 className="text-xl">Вибрані</h1>
+
+                <Grid container spacing={2} className={styles.offers_grid}>
+                    {favorites.map((favorite, index) =>
+                        <OfferElement key={index} offerData={favorite} />
+                    )}
+                </Grid>
+            </div>
         </ProtectedRoute>
      );
 

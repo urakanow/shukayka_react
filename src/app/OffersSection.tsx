@@ -7,7 +7,7 @@ function OffersSection() {
         <div className={styles.offers_section}>
             <OffersBlock categoryIndex={1} />
 
-            <div className={styles.categories_separator} />
+            {/* <div className={styles.categories_separator} /> */}
 
             <OffersBlock categoryIndex={2} />
 
@@ -15,7 +15,7 @@ function OffersSection() {
 
             <OffersBlock categoryIndex={4} />
 
-            <div className={styles.categories_separator} />
+            {/* <div className={styles.categories_separator} /> */}
             
             <OffersBlock categoryIndex={0} />
         </div>

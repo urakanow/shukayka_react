@@ -2,9 +2,10 @@
   display: flex;
   flex-direction: column;
   justify-content: left;
-  width: 100%;
+  /* width: 100%; */
   box-sizing: border-box;
-  padding: 0 200px 40px 200px;
+  /* padding: 0 200px 40px 200px; */
+  padding: 24px 32px
 }
 
 .create_offer_page_section{

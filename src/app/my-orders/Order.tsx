@@ -2,25 +2,41 @@
 import { OrderStatus } from "@/enums/OrderStatus";
 import { OrderPreview } from "@/models/OrderPreview";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 interface OrderProps {
     data: OrderPreview,
 }
 
 function Order({ data }: OrderProps) {
-    function getLinkHref(): string{
+    const [href, setHref] = useState<string>("");
+
+    useEffect(() => {
+        if(!data){
+            return
+        }
+        getLinkHref();
+        console.log("data", data.status, OrderStatus.Paid);
+    }, [data])
+    
+    useEffect(() => {
+        console.log("href: ", href)
+    }, [href])
+
+    function getLinkHref(): void{
         switch(data.status){
-            case OrderStatus.Unpaid:
-                return `checkout/${data.orderId}`;
-            case OrderStatus.Paid:
-                return `orders/${data.orderId}`;
-            default:
-                return "my-orders";
+            case 0:
+                setHref(`checkout/${data.orderId}`);
+                return
+            case 1:
+                setHref(`orders/${data.orderId}`);
+                return
+            
         }
     }
 
     return (
-        <Link href={getLinkHref()}>
+        <Link href={href}>
             <div className="horizontal_container">
                 <div className="vertical_container">
                     <span>{data.offerTitle}</span>

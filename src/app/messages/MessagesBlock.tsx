@@ -1,11 +1,11 @@
 "use client"
 import useApi from '@/hooks/UseApi';
 import Message from './Message';
-import styles from './page.module.css'
 import typography from '@/styles/typography.module.css';
 import { useAuth } from '@/components/AuthContext';
 import { useEffect, useState } from 'react';
 import { ChatPreview } from '@/models/ChatPreview';
+import styles from "./page.module.css";
 
 function MessagesBlock() {
     // const profile_picture = "profile_picture_default_icon_t9kx9b";
@@ -18,8 +18,8 @@ function MessagesBlock() {
     }, [])
 
     return (
-        <div className={`${styles.messages} green_rectangle vertical_container`}>
-            <h1 className={typography.semi_large}>Повідомлення</h1>
+        <div className={`${styles.messages} card`}>
+            <h1 className="text-xl">Повідомлення</h1>
             {/* <Message unread/>
 
             <Message unread/>

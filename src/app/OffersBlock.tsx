@@ -27,7 +27,8 @@ function OffersBlock({ categoryIndex }: OffersBlockProps) {
 
     return (
         <div className={styles.offers_block}>
-            <h1 className={styles.category_name}>{options[categoryIndex]}</h1>
+            {/* <h1 className={styles.category_name}>{options[categoryIndex]}</h1> */}
+            <h1 className="text-xl">{options[categoryIndex]}</h1>
 
             <Grid container spacing={2} className={styles.offers_grid}>
                 {offers.map((offer, index) =>
@@ -40,7 +41,8 @@ function OffersBlock({ categoryIndex }: OffersBlockProps) {
 
             </Grid>
 
-            <button className={styles.see_more} onClick={() => router.push(`/categories/${categoryIndex}`)}>Див. більше</button>
+            {/* <button className={styles.see_more} onClick={() => router.push(`/categories/${categoryIndex}`)}>Див. більше</button> */}
+            <button className={`${styles.see_more} text-base-link`} onClick={() => router.push(`/categories/${categoryIndex}`)}>Див. більше</button>
         </div>
     );
 

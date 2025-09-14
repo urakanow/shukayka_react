@@ -40,7 +40,7 @@ function IOfferElement({ offerData, linkUrl, children }: IOfferElementProps) {
         <Grid size={3} className={styles.offer_element}>
             {offerData && (
                 <div className={`vertical_container ${styles.offer_element_content_wrapper}`}>
-                    <Link className={styles.offer_element_content_wrapper_a} href={`${linkUrl}/${offerData.id}`}>
+                    <Link className={`card ${styles.offer_element_content_wrapper_a}`} href={`${linkUrl}/${offerData.id}`}>
                         <div className="image_wrapper">
                             {image ? (
                                 <CldImage className={styles.offer_preview_image} src={image}
@@ -51,8 +51,10 @@ function IOfferElement({ offerData, linkUrl, children }: IOfferElementProps) {
                                 <img className={styles.offer_preview_image} src="/default_image.jpg" />
                             )}
                         </div>
-                        <h1 className={styles.offer_element_h1}>{offerData.title}</h1>
-                        <span className={styles.offer_element_span}>{offerData.price} грн.</span>
+                        {/* <h1 className={styles.offer_element_h1}>{offerData.title}</h1> */}
+                        <h1 className={`${styles.offer_element_h1} text-base`}>{offerData.title}</h1>
+                        {/* <span className={styles.offer_element_span}>{offerData.price} грн.</span> */}
+                        <span className={`${styles.offer_element_span} text-lg`}>{offerData.price} ₴</span>
                     </Link>
                     {children !== undefined && children}
                 </div>

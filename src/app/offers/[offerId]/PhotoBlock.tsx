@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Photo } from '@/models/Photo';
 import { CldImage } from 'next-cloudinary';
+import styles from "./page.module.css";
 
 interface PhotoBlockProps{
     photos: Photo[]
@@ -29,7 +30,7 @@ function PhotoBlock({ photos }: PhotoBlockProps) {
     }
 
     return (
-        <div className='green_rectangle vertical_container' id='photo_block'>
+        <div className={`${styles.block} ${styles.photo_block} card`} id='photo_block'>
             <div className='carouselle horizontal_container'>
                 {photoIndex > 0 &&
                     <button className='arrow_wrapper' onClick={moveLeft}>
@@ -44,7 +45,7 @@ function PhotoBlock({ photos }: PhotoBlockProps) {
                 }
 
                 <div className='image_wrapper' id='offer_photo_wrapper'>
-                    <CldImage src={offer_test_image} alt='' width={654} height={486} />
+                    <CldImage src={offer_test_image} alt='' width={460} height={315} />
                 </div>
             </div>
 

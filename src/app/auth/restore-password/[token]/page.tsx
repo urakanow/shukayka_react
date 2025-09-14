@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 import { useAuth } from "@/components/AuthContext";
 import Link from "next/link";
 import Error from "@/components/Error";
-import AuthInputField from "../AuthInputField";
-import AuthPage from "../AuthPage";
+import AuthInputField from "../../AuthInputField";
+import AuthPage from "../../AuthPage";
 import { useRouter, useSearchParams } from "next/navigation";
+import auth_styles from "../../page.module.css";
 
 function RestorePasswordPage() {
     const { baseUrl } = useAuth();
@@ -31,7 +32,7 @@ function RestorePasswordPage() {
 
     return (
         <AuthPage title="Створення пароля">
-            <span className='auth_medium_text'>
+            <small className='auth_medium_text'>
                 {sendingStatus === "unauthorized" ? (
                 <>
                     Виникла проблема з вашим запитом.<br />
@@ -49,12 +50,12 @@ function RestorePasswordPage() {
                     </>
                 )
                 )}
-            </span>
+            </small>
 
             {sendingStatus === "unauthorized" || sendingStatus === "success"? (
                 <button className='auth_button auth_medium_heading' onClick={() => router.push("/auth/login")}>Повернутися</button>
             ) : (
-                <form onSubmit={(e) => {
+                <form className={auth_styles.form} onSubmit={(e) => {
                     e.preventDefault();
                     setSendingStatus("sending")
                     restorePassword();
@@ -62,13 +63,16 @@ function RestorePasswordPage() {
                     <AuthInputField type="password" cldImg={password_image} placeholder="Новий пароль"
                     onChange={(e) => setNewPassword(e.target.value)} />
         
-                    <input type='submit' disabled={sendingStatus === "sending"} className={`auth_button auth_medium_heading ${sendingStatus === "sending" ? "disabled_button" : ""}`} value={"Змінити пароль"}></input>
+                    <div className={auth_styles.field_small_container}>
+                        <input type='submit' disabled={sendingStatus === "sending"} className={`primary-button ${sendingStatus === "sending" ? "disabled_button" : ""}`} value={"Змінити пароль"}></input>
 
+                        {sendingStatus !== "unauthorized" && sendingStatus !== "success" && <small className={`${auth_styles.link} `}><Link href={"/auth/login"}>Назад до входу</Link></small>}
+                    </div> 
+                    
                     {error && <Error text={error} />}
                 </form>
             )}
 
-            {sendingStatus !== "unauthorized" && sendingStatus !== "success" && <span className='auth_medium_text'><Link href={"/auth/login"}>Назад до входу</Link></span>}
         </AuthPage>
     );
 

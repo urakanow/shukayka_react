@@ -7,6 +7,7 @@ import AuthInputField from '../AuthInputField';
 import AuthPage from '../AuthPage';
 import GoogleLoginComponent from '@/components/GoogleLoginComponent';
 import { useRouter } from 'next/navigation';
+import auth_styles from "../page.module.css";
 
 function SignUpPage() {
     const login_image = "login_icon_h5yruj";
@@ -31,34 +32,34 @@ function SignUpPage() {
         <AuthPage title='Реєстрація'>
             {!isRegistered ? (
                 <>
-                    <form onSubmit={(e) => {
+                    <form className={auth_styles.form} onSubmit={(e) => {
                         e.preventDefault();
                         signup();
                     }}>
-                        <div className='auth_input_container vertical_container'>
-                            <AuthInputField type="text" cldImg={login_image}
-                            minLength={3} maxLength={20} placeholder="Логін"
-                            onChange={(e) => setUsername(e.target.value)} />
+                        <AuthInputField type="text" cldImg={login_image}
+                        minLength={3} maxLength={20} placeholder="Логін"
+                        onChange={(e) => setUsername(e.target.value)} />
 
-                            <AuthInputField type="email" cldImg={email_image} placeholder="Ел. пошта"
-                            onChange={(e) => setEmail(e.target.value)} />
+                        <AuthInputField type="email" cldImg={email_image} placeholder="Ел. пошта"
+                        onChange={(e) => setEmail(e.target.value)} />
 
-                            <AuthInputField type="tel" cldImg={phone_image} placeholder="Номер тел."
-                            onChange={(e) => setPhoneNumber(e.target.value)}
-                            pattern="^(\+38|38)?\s?(0\d{2})\s?(\d{3})\s?(\d{2})\s?(\d{2})$"
-                            />
+                        <AuthInputField type="tel" cldImg={phone_image} placeholder="Номер тел."
+                        onChange={(e) => setPhoneNumber(e.target.value)}
+                        pattern="^(\+38|38)?\s?(0\d{2})\s?(\d{3})\s?(\d{2})\s?(\d{2})$"
+                        />
 
-                            <AuthInputField type="password" cldImg={password_image}
-                            minLength={8} maxLength={20} placeholder="Пароль"
-                            onChange={(e) => setPassword(e.target.value)} />
-                        </div>
+                        <AuthInputField type="password" cldImg={password_image}
+                        minLength={8} maxLength={20} placeholder="Пароль"
+                        onChange={(e) => setPassword(e.target.value)} />
 
-                        <input type='submit' className='auth_button auth_medium_heading' value={"Створити"} />
+                        <div className={auth_styles.field_small_container}>
+                            <input type='submit' className='primary-button' value={"Створити"} />
 
+                            <small className={`${auth_styles.link} `}><Link href={"/auth/login"} className='change_auth_link'>Вже є аккаунт? Увійти</Link></small>
+                        </div> 
+                   
                         {error && <Error text={error} />}
                     </form>
-
-                    <span className='auth_medium_text'>Вже є аккаунт? <Link href={"/auth/login"} className='change_auth_link'>Увійти</Link></span>
 
                     <GoogleLoginComponent />
                 </>

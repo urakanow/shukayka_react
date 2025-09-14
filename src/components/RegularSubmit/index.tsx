@@ -7,7 +7,7 @@ interface RegularSubmitProps{
 
 function RegularSubmit({ text, className }: RegularSubmitProps) {
     return (
-        <input type='submit' className={`${styles.regular_button} ${className}`} value={text} />
+        <input type='submit' className={`primary-button ${className}`} value={text} />
     );
 }
 

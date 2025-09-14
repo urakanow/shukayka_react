@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import BuySection from "./BuySection";
 import InfoSection from "./InfoSection";
+import styles from "./page.module.css";
 
 function OfferPage() {
     const { offerId } = useParams<{ offerId: string }>();
@@ -25,7 +26,7 @@ function OfferPage() {
     }
 
     return ( 
-        <div className='offer_page_container horizontal_container'>
+        <div className={`${styles.offer_page_container}`}>
             {offerData ? (
                 <>
                     <InfoSection data={{

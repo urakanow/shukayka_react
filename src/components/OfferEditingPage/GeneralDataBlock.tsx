@@ -33,7 +33,7 @@ function GeneralDataBlock({ setGeneralData, generalData }: GeneralDataBlockProps
             <TextInputField defaultValue={generalData ? generalData.title : ""} onChange={handleChange} id="title" label="Назва" />
             
             <InputLabel htmlFor="description" text="Опишіть у подробицях" />
-            <textarea className="text_input" id="description" defaultValue={generalData ? generalData.description : ""} onChange={handleChange}/>
+            <textarea className="text_input small-card" id="description" defaultValue={generalData ? generalData.description : ""} onChange={handleChange}/>
 
             <InputLabel htmlFor="category_dropdown" text="Категорія" />
             <DropdownMenu

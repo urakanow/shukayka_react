@@ -1,7 +1,8 @@
 .logo {
-  font-family: var(--font-istok-web);
+  /* font-family: var(--font-istok-web);
   font-weight: 700;
-  font-size: 40px;
+  font-size: 40px; */
+  color: var(--success);
   line-height: 100%;
   letter-spacing: 0%;
   text-align: center;
@@ -22,4 +23,8 @@
 
 .logo_nav_link{
   text-decoration: none;
+}
+
+.bebra{
+  /* color: var(--text-muted); */
 }

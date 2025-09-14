@@ -8,6 +8,7 @@ import AuthPage from '../AuthPage';
 import GoogleLoginComponent from '@/components/GoogleLoginComponent';
 import { useRouter } from 'next/navigation';
 import { useSearchParams } from 'next/navigation';
+import auth_styles from "../page.module.css";
 
 function LoginPage() {
     const login_image = "login_icon_h5yruj";
@@ -27,28 +28,30 @@ function LoginPage() {
     
     return (
         <AuthPage title="Вхід">
-            <form onSubmit={(e) => {
+            <form className={auth_styles.form} onSubmit={(e) => {
                 e.preventDefault();
                 signin();
             }}>
-                <div className='auth_input_container vertical_container'>
-                    <AuthInputField type="text" cldImg={login_image}
-                    minLength={3} maxLength={20} placeholder="Логін"
-                    onChange={(e) => setLogin(e.target.value)} />
+                <AuthInputField type="text" cldImg={login_image}
+                minLength={3} maxLength={20} placeholder="Логін"
+                onChange={(e) => setLogin(e.target.value)} />
 
+                <div className={auth_styles.field_small_container}>
                     <AuthInputField type="password" cldImg={password_image}
                     minLength={8} maxLength={20} placeholder="Пароль"
                     onChange={(e) => setPassword(e.target.value)} />
+
+                    <small className={`${auth_styles.link} `}><Link href={"/auth/forgot-password"}>Забули пароль?</Link></small>
                 </div>
 
-                <span className='auth_medium_text'><Link href={"/auth/forgot-password"}>Забули пароль?</Link></span>
+                <div className={auth_styles.field_small_container}>
+                    <input className='primary-button' type='submit' value={"Увійти"} />
 
-                <input className='auth_button auth_medium_heading' type='submit' value={"Увійти"}></input>
+                    <small className={`${auth_styles.link} `}><Link href={"/auth/signup"} className='change_auth_link'>Немає аккаунта? Створити</Link></small>
+                </div>
 
                 {error && <Error text={error} />}
             </form>
-
-            <span className='auth_medium_text'>Немає аккаунта? <Link href={"/auth/signup"} className='change_auth_link'>Створити</Link></span>
 
             <GoogleLoginComponent />
         </AuthPage>

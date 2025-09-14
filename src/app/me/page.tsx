@@ -1,7 +1,7 @@
 "use client"
 import PersonalDataBlock from './PersonalDataBlock';
 import MyOffersBlock from './MyOffersBlock';
-import MessagesBlock from './MessagesBlock';
+import MessagesBlock from '../messages/MessagesBlock';
 import { useEffect, useState } from 'react';
 import useApi from '@/hooks/UseApi';
 import { useAuth } from '@/components/AuthContext';
@@ -10,6 +10,7 @@ import { OfferPreview } from '@/models/OfferPreview';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import styles from './page.module.css'
 import { PersonalData } from '@/models/PersonalData';
+import DeliveryDataBlock from './DeliveryDataBlock';
 
 interface UserData {
     address?: string,
@@ -40,17 +41,30 @@ function Me() {
                             address: userData.personalData.address,
                             apartmentNumber: userData.personalData.apartmentNumber,
                             email: userData.personalData.email,
-                            phoneNumber: userData.personalData.phoneNumber
+                            phoneNumber: userData.personalData.phoneNumber,
+                            profilePicture: userData.personalData.profilePicture
                         }}/>
 
                         <div className={`${styles.personal_page_right_section} vertical_container`}>
-                            <MyOffersBlock offers={userData.offers} />
+                            {/* <MyOffersBlock offers={userData.offers} /> */}
+                            <DeliveryDataBlock data={{
+                                username: userData.personalData.username,
+                                firstName: userData.personalData.firstName,
+                                lastName: userData.personalData.lastName,
+                                city: userData.personalData.city,
+                                postCode: userData.personalData.postCode,
+                                address: userData.personalData.address,
+                                apartmentNumber: userData.personalData.apartmentNumber,
+                                email: userData.personalData.email,
+                                phoneNumber: userData.personalData.phoneNumber,
+                                profilePicture: userData.personalData.profilePicture
+                            }}/>
 
-                            <MessagesBlock />
+                            {/* <MessagesBlock /> */}
 
-                            <div className='horizontal_container'>
-                                <RegularButton onClick={logout} text="logout" />
-                                <RegularButton onClick={deleteAccount} text="delete account" />
+                            <div className={styles.deletion_buttons_container}>
+                                <button className='secondary-button' onClick={logout}>Вийти</button>
+                                <button className='secondary-button' onClick={deleteAccount}>Видалити акаунт</button>
                             </div>
                         </div>
                     </>
