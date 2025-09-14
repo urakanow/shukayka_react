@@ -1,0 +1,14 @@
+.regular_button{
+  background-color: #29D5A4;
+  box-shadow: 0px 4px 11.2px 0px #00000040;
+  border-radius: 17px;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  font-family: Inter;
+  border: none;
+  color: #262928;
+  cursor: pointer;
+  padding: 20px;
+}

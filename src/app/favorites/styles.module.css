@@ -1,0 +1,15 @@
+.favorite_button{
+  position:absolute;
+  right: 16px;
+  top: 14px;
+  width: 30px;
+  cursor: pointer;
+}
+
+.offers_block{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+}

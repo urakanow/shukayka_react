@@ -1,6 +1,26 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Inter, Istok_Web } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import AuthProvider from "@/components/AuthContext";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+
+const clientId = "131530890468-fh6f28mtkb04gs02hva387frkbvieqs1.apps.googleusercontent.com";
+
+const istokWeb = Istok_Web({
+  weight: ['400', '700'],
+  style: ['normal', 'italic'],
+  subsets: ['cyrillic', 'latin'],
+  variable: '--font-istok-web',
+});
+
+const inter = Inter({
+  weight: ['400', '500'],
+  style: 'normal',
+  subsets: ['cyrillic', 'latin'],
+  variable: '--font-inter'
+})
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,9 +43,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+    <html lang="en" className={`${inter.variable} ${geistSans.variable} ${geistMono.variable}`}>
+      {/* <body className={`${geistSans.variable} ${geistMono.variable} ${istokWeb.variable}`}> */}
+      <body>
+        <GoogleOAuthProvider clientId={clientId}>
+          <AuthProvider>
+            <Header />
+            <main>
+              {children}
+            </main>
+            <Footer />
+          </AuthProvider>
+        </GoogleOAuthProvider>
       </body>
     </html>
   );
