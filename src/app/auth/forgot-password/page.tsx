@@ -6,6 +6,7 @@ import Countdown from 'react-countdown';
 import Error from '@/components/Error';
 import AuthInputField from '../AuthInputField';
 import AuthPage from '../AuthPage';
+import auth_styles from "../page.module.css";
 
 function ForgotPasswordPage() {
     const restore_password_image = "restore_password_icon_qdzoys";
@@ -55,12 +56,12 @@ function ForgotPasswordPage() {
 
     return (
         <AuthPage title='Відновлення пароля'>
-            <span className='auth_medium_text'>
+            <small className='auth_medium_text'>
                 Вам на пошту буде надіслано інструкцію<br/>
                 з відновлення пароля
-            </span>
+            </small>
 
-            <form onSubmit={(e) => {
+            <form className={auth_styles.form} onSubmit={(e) => {
                 e.preventDefault();
                 setSendingStatus("sending")
                 forgotPassword();
@@ -68,21 +69,24 @@ function ForgotPasswordPage() {
                 <AuthInputField type="email" cldImg={restore_password_image} placeholder="Ел. пошта"
                 onChange={(e) => setEmail(e.target.value)} />
     
-                <div id='send_email_button' className="horizontal_container" style={sendingStatus === "blocked" ? {filter: 'grayscale()'} : undefined}>
+                <div  style={sendingStatus === "blocked" ? {filter: 'grayscale()'} : undefined}>
                     {sendingStatus === "blocked" && 
                         <div className="auth_input_image_wrapper vertical_container">
                             <Countdown date={Date.now() + 1 * 60 * 1000} renderer={renderer}/>
                         </div>
                     }
-                    <input type='submit' disabled={sendingStatus === "blocked" || sendingStatus === "sending"} className={`auth_button auth_medium_heading ${sendingStatus === "blocked" || sendingStatus == "sending"? "disabled_button" : ""}`} value={buttonText}></input>
+                    
+                    <div className={auth_styles.field_small_container}>
+                        <input type='submit' disabled={sendingStatus === "blocked" || sendingStatus === "sending"} className={`primary-button ${sendingStatus === "blocked" || sendingStatus == "sending"? "disabled_button" : ""}`} value={buttonText}></input>
 
+                        <small className={`${auth_styles.link} `}><Link href={"/auth/login"}>Назад до входу</Link></small>
+                    </div>
                 </div>
                 
                 {error && <Error text={error} />}
             </form>
 
 
-            <span className='auth_medium_text'><Link href={"/auth/login"}>Назад до входу</Link></span>
         </AuthPage>
     );
 

@@ -1,0 +1,64 @@
+.block{
+    padding: 24px 32px;
+    box-sizing: border-box;
+}
+
+.column{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.buy_section{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    gap: 16px;
+}
+
+.info{
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.info div{
+    padding: 4px 8px;
+}
+
+.description{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.description h1{
+    text-align: left;
+}
+
+.description p{
+    text-align: left;
+}
+
+.offer_page_container{
+    display: flex;
+    flex-direction: row;
+    gap: 24px
+}
+
+.photo_block{
+    /* height: 400px; */
+}
+
+.info_block{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.location_container{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: end;
+}

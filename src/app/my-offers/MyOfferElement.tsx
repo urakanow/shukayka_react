@@ -24,10 +24,10 @@ function MyOfferElement({ id, offerData, onDelete }: MyOfferElementProps) {
     return (
         <IOfferElement offerData={offerData} linkUrl="/edit-offer">
             <div id='my_offer_element_button_section' className="horizontal_container">
-                <RegularButton onClick={() => router.push(`/edit-offer/${offerData.id}`)} text='Редагувати' />
+                {/* <RegularButton onClick={() => router.push(`/edit-offer/${offerData.id}`)} text='Редагувати' />
                 <button id="delete_button" onClick={deleteOffer}>
                     <CldImage src={delete_image} alt='' width={34} height={34} />
-                </button>
+                </button> */}
             </div>
         </IOfferElement>
     );

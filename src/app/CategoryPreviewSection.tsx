@@ -10,7 +10,8 @@ function CategoryPreviewSection() {
             </Link>
             
             <Link href={`/categories/${1}`}>
-                <CategoryPreview imgUrl="electronics_icon_sgujlx" categoryName="Електроніка" styleId={styles.electronics} />
+                {/* <CategoryPreview imgUrl="electronics_icon_sgujlx" categoryName="Електроніка" styleId={styles.electronics} /> */}
+                <CategoryPreview imgUrl="electronics_icon_sgujlx" categoryName="Електроніка" />
             </Link>
             
             <Link href={`/categories/${2}`}>
@@ -34,7 +35,8 @@ function CategoryPreviewSection() {
             </Link>
 
             <Link href={`/categories/${7}`}>
-                <CategoryPreview imgUrl="real_estate_icon_gvhzkj" categoryName="Нерухомість" styleId={styles.real_estate} />
+                {/* <CategoryPreview imgUrl="real_estate_icon_gvhzkj" categoryName="Нерухомість" styleId={styles.real_estate} /> */}
+                <CategoryPreview imgUrl="real_estate_icon_gvhzkj" categoryName="Нерухомість" />
             </Link>
         </div>
      );

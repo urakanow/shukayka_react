@@ -43,8 +43,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} ${istokWeb.variable}`}>
+    <html lang="en" className={`${inter.variable} ${geistSans.variable} ${geistMono.variable}`}>
+      {/* <body className={`${geistSans.variable} ${geistMono.variable} ${istokWeb.variable}`}> */}
+      <body>
         <GoogleOAuthProvider clientId={clientId}>
           <AuthProvider>
             <Header />

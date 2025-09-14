@@ -1,5 +1,5 @@
 "use client"
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
 import useApi from "@/hooks/UseApi";
 import { useAuth } from "@/components/AuthContext";
 import RegularButton from "@/components/RegularButton";
@@ -7,6 +7,8 @@ import TextInputField from "@/components/TextInputField";
 import page from './page.module.css';
 import typography from '@/styles/typography.module.css';
 import { PersonalData } from "@/models/PersonalData";
+import { CldImage } from "next-cloudinary";
+import InputLabel from "@/components/InputLabel";
 
 interface PersonalDataBlockProps {
     data: PersonalData
@@ -16,6 +18,13 @@ function PersonalDataBlock({ data }: PersonalDataBlockProps) {
     const { authorizedRequest } = useApi();
     const { baseUrl } = useAuth();
     const [isChanged, setIsChanged] = useState(false);
+
+    const [changePPVisible, setChangePPVisible] = useState<boolean>(false);
+    const [profileImage, setProfileImage] = useState<string>(data.profilePicture);
+    const [previewSrc, setPreviewSrc] = useState<string | null>(null);
+
+    const fileInputRef = useRef<HTMLInputElement | null>(null);
+    const [isDefaultPicture, setIsDefaultPicture] = useState<boolean>(true);
 
     const [formData, setFormData] = useState({
         username: data.username,
@@ -40,10 +49,54 @@ function PersonalDataBlock({ data }: PersonalDataBlockProps) {
             [id]: value
         }));
     };
+
+    const handleButtonClick = () => {
+        if(fileInputRef.current){
+            fileInputRef.current.click();
+        }
+    }
+
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (file) {
+            setIsDefaultPicture(false);
+            const objectUrl = URL.createObjectURL(file);
+            setPreviewSrc(objectUrl);
+
+            console.log("Selected file:", file);
+            // later: upload to server or preview it
+        }
+    };
     
     return (
-        <div className={`${page.personal_data} green_rectangle vertical_container`}>
-            <h1 className={typography.semi_large}>Особистий Кабінет</h1>
+        <div className={`${page.personal_data} card`}>
+            <h1 className={typography.semi_large}>Особисті дані</h1>
+
+                <div className="field_small_container">
+                    <InputLabel htmlFor="profile_picture" text="Фото профілю" />
+                    <div className={page.profile_picture_wrapper}
+                    onMouseEnter={() => setChangePPVisible(true)}
+                    onMouseLeave={() => setChangePPVisible(false)}
+                    >
+                        {changePPVisible && 
+                            // <button className={page.change_profile_picture} onClick={() => setProfileImage("favorite_icon_selected_fj3vta")}/>
+                            <button className={page.change_profile_picture} onClick={handleButtonClick}/>
+                        }
+                        <input
+                            type="file"
+                            accept="image/*"
+                            ref={fileInputRef}
+                            style={{ display: "none" }}
+                            onChange={handleFileChange}
+                        />
+
+                        {isDefaultPicture ? (
+                            <CldImage src={profileImage} id="profile_picture" alt="profile picture" width={100} height={100} />
+                        ) : (
+                            <img className={page.preview_image} src={previewSrc || ""} />
+                        )}
+                    </div>
+                </div>
 
             <TextInputField value={formData.username} onChange={handleChange} id="username" label="Ім’я Користувача" />
 
@@ -51,19 +104,11 @@ function PersonalDataBlock({ data }: PersonalDataBlockProps) {
 
             <TextInputField value={formData.lastName} onChange={handleChange} id="lastName" label="Прізвище" />
 
-            <TextInputField value={formData.city} onChange={handleChange} id="city" label="Місто" />
-
-            <TextInputField value={formData.postCode} onChange={handleChange} id="postCode" label="Поштовий індекс" />
-
-            <TextInputField value={formData.address} onChange={handleChange} id="address" label="Адреса" />
-
-            <TextInputField value={formData.apartmentNumber} onChange={handleChange} id="apartmentNumber" label="Номер квартири(якщо присутній)" />
+            <TextInputField value={formData.phoneNumber} onChange={handleChange} id="phoneNumber" label="Номер телефону" />
 
             <TextInputField value={formData.email} onChange={handleChange} id="email" label="Ел. Адреса" />
 
-            <TextInputField value={formData.phoneNumber} onChange={handleChange} id="phoneNumber" label="Номер телефону" />
-
-            {isChanged && <RegularButton className={page.save_button} onClick={editUserData} text="Зберегти" />}
+            {isChanged && <button className={`primary-button`} onClick={editUserData} value="">Зберегти</button>}
         </div>
      );
 

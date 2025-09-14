@@ -50,7 +50,7 @@ function Message({ unread = false, chat }: MessageProps) {
 
     return (
         <Link href={`/chat/${chat.id}`}>
-            <div className={`${styles.message} ${unread && styles.unread_message} horizontal_container`} style={{zIndex: 5}}>
+            <div className={`${styles.message} ${unread && styles.unread_message} small-card`} style={{zIndex: 5}}>
                 {unread && <div className={styles.unread_marker} />}
 
                 <div className="horizontal_container">

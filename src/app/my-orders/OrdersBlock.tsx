@@ -13,6 +13,10 @@ function OrdersBlock() {
     useEffect(() => {
         fetchMyOrders();
     }, [])
+
+    useEffect(() => {
+        console.log("orders: ", orders)
+    }, [orders])
     
     return (
         <>

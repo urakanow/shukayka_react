@@ -1,38 +1,49 @@
 .header {
-  height: 104px;
-  background: linear-gradient(192.08deg, #2C3331 -88.48%, #212121 141.66%);
-  color: rgb(255, 255, 255);
-  font-size: 20px;
-  box-shadow: 0px 4px 4px 0px #00000040;
-  box-shadow: 0px 4px 4px 0px #00000040 inset;
+  /* height: 104px; */
+  /* background: linear-gradient(192.08deg, #2C3331 -88.48%, #212121 141.66%); */
+  background-color: var(--bg);
+  /* color: rgb(255, 255, 255); */
+  /* font-size: 20px; */
+  /* box-shadow: 0px 4px 4px 0px #00000040; */
+  /* box-shadow: 0px 4px 4px 0px #00000040 inset; */
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 104px;
+  justify-content: center;
+  gap: 96px;
+  padding: 24px 96px;
+  border-bottom: 1px solid var(--border-muted);
 }
 
 /* search bar */
 
 .search_bar{
-  width: 812px;
-  height: 32px;
-  border-radius: 12px;
-  background: rgba(217, 217, 217, 1);
+  /* width: 812px; */
+  width: 600px;
+  height: 48px;
+  box-sizing: border-box;
+  /* border-radius: 8px; */
+  /* border-radius: 12px; */
+  /* background: rgba(217, 217, 217, 1); */
+  /* background-color: var(--bg-light); */
   text-align: left;
   padding: 15px;
   display: flex;
   align-items: center;
   gap: 15px;
+  /* border: 1px solid var(--border-muted); */
 }
 
 .search_input{
   border: none;
   background: none;
-  color: rgba(38, 41, 40, 1);
+  /* color: rgba(38, 41, 40, 1);
   font-family: var(--font-istok-web);
   font-weight: 700;
-  font-size: 20px;
+  font-size: 20px; */
+  font-size: inherit;
+  font-family: var(--font-base);
+  color: inherit;
   line-height: 100%;
   letter-spacing: 0%;
   flex: 1;
@@ -49,7 +60,8 @@
 .nav {
   display: flex;
   flex-direction: row;
-  gap: 26px;
+  gap: 24px;
+  box-sizing: border-box;
 }
 
 .nav_link {
@@ -68,12 +80,32 @@
 }
 
 .nav_plus{
-  font-family: IstokWebBold;
+  /* font-family: IstokWebBold;
   font-weight: 700;
-  font-size: 37px;
+  font-size: 37px; */
   line-height: 100%;
   letter-spacing: 0%;
   text-align: center;
   text-decoration: none;
-  color: white;
+  /* color: white; */
+}
+
+.nav_item{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+}
+
+.login_unauthorized{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.admin_nav{
+  border: 2px dashed var(--border-muted);
 }

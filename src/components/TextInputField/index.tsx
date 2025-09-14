@@ -28,12 +28,12 @@ interface TextInputFieldProps extends React.InputHTMLAttributes<HTMLInputElement
 const TextInputField = forwardRef<HTMLInputElement, TextInputFieldProps>(
   ({ value, onChange, id, label, defaultValue, ...inputProps }, ref) => {
     return (
-      <>
+      <div className="field_small_container">
         <InputLabel htmlFor={id} text={label} />
         <input
           required
           type="text"
-          className="text_input"
+          className="input small-card"
           id={id}
           defaultValue={defaultValue}
           value={value}
@@ -41,7 +41,7 @@ const TextInputField = forwardRef<HTMLInputElement, TextInputFieldProps>(
           ref={ref}
           {...inputProps}
         />
-      </>
+      </div>
     );
   }
 );

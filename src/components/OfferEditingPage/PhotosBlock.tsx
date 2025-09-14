@@ -66,7 +66,7 @@ function PhotosBlock({ photos, setPhotos }: PhotosBlockProps) {
             <div className={styles.photos_container} id="photos_container">
                 {Array.from({ length: 2 }).map((_, i) => (
                     <div key={i} className={styles.photos_container_row}>
-                        {Array.from({ length: 4 }).map((_, j) => (
+                        {Array.from({ length: 2 }).map((_, j) => (
                             <PhotoElement key={j} onFilesSelect={handlePhotoUpload}
                             photoUrl={getPhotoUrl(photos[i * 4 + j])} index={i * 4 + j} />
                         ))}

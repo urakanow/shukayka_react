@@ -1,4 +1,5 @@
 import RegularButton from "@/components/RegularButton"
+import styles from "./page.module.css";
 
 interface Data {
     id: number,
@@ -11,7 +12,7 @@ interface DescriptionBlockProps {
 
 function DescriptionBlock({ data }: DescriptionBlockProps) {
     return (
-        <div className='green_rectangle vertical_container' id='description_display'>
+        <div className={`${styles.description}`} id='description_display'>
             <h1 className='medium_heading'>Опис</h1>
 
             <p className='small_text' id='description_text'>
@@ -28,7 +29,7 @@ function DescriptionBlock({ data }: DescriptionBlockProps) {
             <div className='horizontal_container' id='report_container'>
                 <span className='small_text'>ID: {data.id}</span>
 
-                <RegularButton className='report_button' text='Поскаржитися' onClick={report} />
+                {/* <RegularButton className='report_button' text='Поскаржитися' onClick={report} /> */}
             </div>
         </div>
      );

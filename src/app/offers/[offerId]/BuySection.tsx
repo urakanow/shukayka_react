@@ -6,6 +6,7 @@ import { DateUtil } from '@/utils/DateFormatter';
 import { CldImage } from 'next-cloudinary';
 import { useRouter } from 'next/navigation';
 import DeliveryOptionsBlock from './DeliveryOptionsBlock';
+import styles from "./page.module.css";
 
 interface Data {
     offerId: number,
@@ -29,12 +30,16 @@ function BuySection({ data }: BuySectionProps) {
     const green_arrow_image = "green_arrow_icon_rmvcna";
 
     return (
-        <div className='green_rectangle vertical_container ' id='offer_page_buy_section'>
+        <div className={`${styles.block} ${styles.buy_section} card`} id='offer_page_buy_section'>
             <span className='small_text' id='published_at'>Опубліковано {DateUtil.getDateTime(data.creationDate)}</span>
 
             <h1 className='large_heading' id='offer_page_title'>{data.title}</h1>
 
             <h2 className='medium_heading'>{data.price} грн.</h2>
+            
+            <ProtectedRoute>
+                <button className='primary-button'  onClick={buyNow}>Купити зараз</button>
+            </ProtectedRoute>
 
             <div className='user'>
                 <CldImage src={profile_picture} alt='' width={58} height={58} />
@@ -43,16 +48,14 @@ function BuySection({ data }: BuySectionProps) {
                     <span className='small_text'>{data.phoneNumber}</span>
                 </div>
             </div>
+            
 
-            <div className='horizontal_container' id='send_message'>
+            {/* <div className='horizontal_container' id='send_message'> */}
                 {/* <input type='text' className='text_input' placeholder="Зв'язатися з продавцем"/> */}
-                <RegularButton className='text_input' text="Зв'язатися з продавцем" onClick={contactSeller} />
-                <CldImage src={green_arrow_image} alt='' width={58} height={58} id="form_text_input_image"/>
-            </div>
+                <button className='secondary-button-normal' onClick={contactSeller}>Зв'язатися з продавцем</button>
+                {/* <CldImage src={green_arrow_image} alt='' width={58} height={58} id="form_text_input_image"/> */}
+            {/* </div> */}
 
-            <ProtectedRoute>
-                <RegularButton className='buy_now_button' text='Купити зараз' onClick={buyNow} />
-            </ProtectedRoute>
 
             <DeliveryOptionsBlock />
         </div>

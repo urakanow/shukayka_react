@@ -6,7 +6,7 @@ interface InputLabelProps {
 
 function InputLabel({ htmlFor, text, id }: InputLabelProps) {
     return (
-        <label id={id} className="text_input_label" htmlFor={htmlFor}>{text}</label>
+        <label className={`label`} id={id} htmlFor={htmlFor}><small>{text}</small></label>
     );
 }
 

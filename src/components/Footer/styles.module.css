@@ -2,12 +2,14 @@
 
 .footer {
   padding: 46px 0;
-  background-color: rgb(128, 68, 0);
-  color: rgb(255, 255, 255);
-  font-size: 20px;
-  background: linear-gradient(192.08deg, #2C3331 -88.48%, #212121 141.66%);
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+  border-top: 1px solid var(--border-muted);
+  /* background-color: rgb(128, 68, 0); */
+  /* color: rgb(255, 255, 255); */
+  /* font-size: 20px; */
+  /* background: linear-gradient(192.08deg, #2C3331 -88.48%, #212121 141.66%); */
+  background-color: var(--bg);
+  /* box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); */
+  /* box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset; */
 }
 
 .description{
@@ -17,7 +19,7 @@
   line-height: 100%;
   letter-spacing: 0%;
   text-align: center;
-  color: white;
+  /* color: white; */
   margin: 0;
 }
 
@@ -30,7 +32,7 @@
   line-height: 100%;
   letter-spacing: 0%;
   text-align: center;
-  color: white;
+  /* color: white; */
 }
 
 .footer_logo{
@@ -75,7 +77,7 @@
   line-height: 100%;
   letter-spacing: 0%;
   text-align: center;
-  color: white;
+  /* color: white; */
   text-align: left;
 }
 

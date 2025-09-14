@@ -25,7 +25,7 @@ function SearchBar() {
     };
 
     return (
-        <div className={styles.search_bar}>
+        <div className={`${styles.search_bar} small-card`}>
             <CldImage src={search_image} alt='search image' width={37} height={37} angle={77} />
             <input ref={inputRef} type='search' placeholder='Пошук...' className={styles.search_input}
             onKeyDown={(e: KeyboardEvent<HTMLInputElement>) => {

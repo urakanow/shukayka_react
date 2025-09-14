@@ -59,14 +59,14 @@ function OfferEditingPage({ id }: OfferEditingPageProps) {
 
     return (
         <ProtectedRoute>
-            <div className={styles.create_offer_page_container}>
+            <div className={`card ${styles.create_offer_page_container}`}>
                 <GeneralDataBlock setGeneralData={setGeneralData} generalData={id ? generalData : undefined}/>
 
                 <PhotosBlock photos={photos} setPhotos={setPhotos}/>
 
                 <ContactDataBlock formData={contactData} setFormData={setContactData} />
 
-                <RegularButton className="add_offer_button" onClick={id ? editOffer : createOffer} text={id ? "Зберегти" : "Додати Оголошення"} />
+                <button className="primary-button" onClick={id ? editOffer : createOffer}>{id ? "Зберегти" : "Додати Оголошення"}</button>
 
                 {error && <Error text={error} />}
             </div>

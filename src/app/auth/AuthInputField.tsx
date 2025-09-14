@@ -1,5 +1,6 @@
 import { CldImage } from "next-cloudinary";
 import { ChangeEvent, InputHTMLAttributes } from "react";
+import styles from "./page.module.css";
 
 interface AuthInputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
     type: string,
@@ -12,12 +13,12 @@ interface AuthInputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
 
 function AuthInputField({ type, cldImg, minLength, maxLength, placeholder, onChange, ...inputProps }: AuthInputFieldProps) {
     return (
-        <div className="auth_input_wrapper horizontal_container">
-            <div className="auth_input_image_wrapper vertical_container">
-                <CldImage src={cldImg} alt="" width={70} height={70} />
-            </div>
+        <div className={styles.input_field}>
+            {/* <div className={styles.input_field_image_wrapper}>
+                <CldImage src={cldImg} alt="" width={48} height={48} />
+            </div> */}
             
-            <input className="text_input auth_input auth_medium_heading"
+            <input className={`${styles.input} small-card`}
             type={type} required
             minLength={minLength} maxLength={maxLength}
             placeholder={placeholder}
